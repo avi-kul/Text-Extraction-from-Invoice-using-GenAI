@@ -1,3 +1,6 @@
 dotenv
 streamlit
 google-generativeai
+xlsxwriter
+pillow
+openpyxl
