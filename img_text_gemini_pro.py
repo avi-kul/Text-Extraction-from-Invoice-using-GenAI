@@ -25,8 +25,10 @@ model = genai.GenerativeModel('gemini-1.5-flash')
 
 
 def get_gemini_response(input,image):
-    response = model.generate_content([input,image[0]])
-    return response.text
+    if not image:
+        return "No image provided."
+    response = model.generate_content([input_prompt, image[0]])
+    return response.text if response else "No response from model."
 
 
 def input_image_details(uploaded_file):
@@ -42,8 +44,7 @@ def input_image_details(uploaded_file):
             }
         ]
         return image_parts
-    else:
-        raise FileNotFoundError("No File uploaded")
+    return []  # return empty list if no file
     
 
 
